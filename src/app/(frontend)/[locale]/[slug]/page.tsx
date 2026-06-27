@@ -9,7 +9,6 @@ import React, { cache } from 'react'
 import { homeStatic } from '@/endpoints/seed/home-static'
 
 import { RenderBlocks } from '@/blocks/RenderBlocks'
-import { RenderHero } from '@/heros/RenderHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import { defaultLocale, isLocale, locales, type Locale } from '@/utilities/locales'
 import PageClient from './page.client'
@@ -65,7 +64,7 @@ export default async function Page({ params: paramsPromise }: Args) {
     return <PayloadRedirects url={url} locale={locale} />
   }
 
-  const { hero, layout } = page
+  const { layout } = page
 
   return (
     <article className="pt-16 pb-24">
@@ -75,7 +74,6 @@ export default async function Page({ params: paramsPromise }: Args) {
 
       {draft && <LivePreviewListener />}
 
-      <RenderHero {...hero} />
       <RenderBlocks blocks={layout} />
     </article>
   )

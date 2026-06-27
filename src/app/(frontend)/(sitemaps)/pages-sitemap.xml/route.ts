@@ -34,8 +34,6 @@ const getPagesSitemap = unstable_cache(
     const dateFallback = new Date().toISOString()
 
     const paths: { path: string; lastmod: string }[] = [
-      { path: '/search', lastmod: dateFallback },
-      { path: '/posts', lastmod: dateFallback },
       ...(results.docs ?? [])
         .filter((page) => Boolean(page?.slug))
         .map((page) => ({

@@ -24,7 +24,7 @@ export const contentMock = {
       link: {
         type: 'custom',
         label: 'Learn more',
-        url: '/posts',
+        url: '/about',
         appearance: 'outline',
       },
     },

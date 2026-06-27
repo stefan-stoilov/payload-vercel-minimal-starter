@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite'
 
-import { mockPost } from '@/mocks/fixtures'
+import { mockPage } from '@/mocks/fixtures'
 
 import { CMSLink } from './index'
 
@@ -39,8 +39,8 @@ export const ButtonOutline: Story = { args: { appearance: 'outline', label: 'Rea
 export const Reference: Story = {
   args: {
     type: 'reference',
-    label: 'Read the post',
+    label: 'About us',
     appearance: 'default',
-    reference: { relationTo: 'posts', value: mockPost() },
+    reference: { relationTo: 'pages', value: mockPage() },
   },
 }

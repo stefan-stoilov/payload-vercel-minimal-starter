@@ -4,7 +4,6 @@ import { PayloadRequest, CollectionSlug } from 'payload'
 import { defaultLocale, isLocale, localizePath } from '@/utilities/locales'
 
 const collectionPrefixMap: Partial<Record<CollectionSlug, string>> = {
-  posts: '/posts',
   pages: '',
 }
 
