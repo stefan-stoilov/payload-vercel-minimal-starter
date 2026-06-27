@@ -1,0 +1,31 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "react", "jsx-a11y", "nextjs", "import"],
+  "categories": {
+    "correctness": "warn"
+  },
+  "rules": {
+    "typescript/ban-ts-comment": "warn",
+    "typescript/no-empty-object-type": "warn",
+    "typescript/no-explicit-any": "warn",
+    "no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "args": "after-used",
+        "ignoreRestSiblings": false,
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "destructuredArrayIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^(_|ignore)"
+      }
+    ]
+  },
+  "ignorePatterns": [
+    ".next/",
+    "src/payload-types.ts",
+    "src/payload-generated-schema.ts",
+    "src/app/(payload)/",
+    "src/migrations/"
+  ]
+}

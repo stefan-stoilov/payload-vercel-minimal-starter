@@ -1,0 +1,19 @@
+diff --git a/dist/utils/schemaConversion/convertCollectionSchemaToZod.js b/dist/utils/schemaConversion/convertCollectionSchemaToZod.js
+index 07a2628fdc987d663885c7e918152539ca7c1766..0c46c9ed951a0d986e6c8e0f1eadaa4ecb36a7ff 100644
+--- a/dist/utils/schemaConversion/convertCollectionSchemaToZod.js
++++ b/dist/utils/schemaConversion/convertCollectionSchemaToZod.js
+@@ -28,7 +28,13 @@ export const convertCollectionSchemaToZod = (schema)=>{
+      * 4. The resulting Zod schema is used only for parameter validation in MCP tools, not for data processing
+      * 5. No user input or external data is involved in the schema generation process
+      */ // eslint-disable-next-line @typescript-eslint/no-implied-eval
+-        return new Function('z', `return ${transpileResult.outputText}`)(z);
++        // PATCH: ts.transpileModule prepends a `"use strict";` directive to the output.
++        // The original `new Function('z', 'return ' + outputText)` therefore returns the
++        // string "use strict" instead of the Zod schema, so `.partial()`/`.shape` are
++        // missing and the Update/Create tools break. Strip the directive (and its trailing
++        // whitespace, to avoid `return`\n ASI) before evaluating the schema expression.
++        const __body = transpileResult.outputText.replace(/^\s*['"]use strict['"];?\s*/, '');
++        return new Function('z', `'use strict'; return ${__body}`)(z);
+     } catch (error) {
+         // If schema conversion fails (e.g., due to Zod v4 toJSONSchema null-check bug
+         // with record schemas that have undefined valueType, or bundler transforms

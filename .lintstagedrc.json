@@ -1,0 +1,4 @@
+{
+  "*.{js,jsx,mjs,cjs,ts,tsx}": ["pnpm lint:fix", "pnpm format"],
+  "*.{json,jsonc,md,scss,css}": ["pnpm format"]
+}
